@@ -36,19 +36,25 @@ int	ft_flags(tab *init, const char *format, int i)
 	int	len;
 
 	len = 0;
-	while (ft_strchr("-+ #0", format[i]))
+	if (format[i] == '.')
 	{
-		if (format[i] == '+')
-			init->sign = 1;
-		if (format[i] == ' ')
-			init->space = 1;
-		if (format[i] == '#')
-			init->pointer = 1;
-		if (format[i] == '0')
-			if (init->zero == 0)
-				init->zero = 1;
+		init->precision = 1;
 		i++;
 	}
+	else
+		while (ft_strchr("-+ #0", format[i]))
+		{
+			if (format[i] == '+')
+				init->sign = 1;
+			if (format[i] == ' ')
+				init->space = 1;
+			if (format[i] == '#')
+				init->pointer = 1;
+			if (format[i] == '0')
+				if (init->zero == 0)
+					init->zero = 1;
+			i++;
+		}
 	if (ft_isdigit(format[i]))
 		ft_width(init, format, i);
 	while (ft_isdigit(format[i]))
@@ -97,24 +103,25 @@ int	main(void)
 	int	len;
 
 	c = 'L';
-	d = 12345;
+	d = -123456789;
 	x = 2147000000;
 	len = 0;
 
 	printf("***printf c : %c\n", c);
 	len = ft_printf("ft_printf c : %c\n", c);
 	printf("Valeur de len : %d\n\n", len);
+	printf("\n**********************************************************************************\n");
+	printf("*    ***printf s : %.25s\n", str);
+	len = ft_printf("*    ft_printf s : %.25s\n", str);
+	printf("*    Valeur de len : %d\n", len);
+	printf("*\n**********************************************************************************\n");
 
-	printf("***printf s : %s\n", str);
-	len = ft_printf("ft_printf s : %s\n", str);
-	printf("Valeur de len : %d\n\n", len);
-
-	printf("***printf p : %p\n", &c);
+	printf("\n\n***printf p : %p\n", &c);
 	len = ft_printf("ft_printf p : %p\n", &c);
 	printf("Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
-	printf("***printf d : %+10d - ***printf i : %+10i\n", d, d);
-	len = ft_printf("ft_printf d : %+10d - ft_printf i : %+10i\n", d, d);
+	printf("***printf d : %+17d - ***printf i : %+017i\n", d, d);
+	len = ft_printf("ft_printf d : %+017d - ft_printf i : %+017i\n", d, d);
 //	printf("Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
 	printf("\n\n***printf x : %x _ ***printf X : %X\n", x, x);

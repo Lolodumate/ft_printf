@@ -23,6 +23,7 @@ typedef struct tab_ft_printf
 } tab;
 
 void	ft_putchar(char c);
+void	ft_putstr(char *str);
 int	ft_intlen(int n);
 int	ft_print_char(tab *init);
 int	ft_print_hexa(tab *init, char format);
