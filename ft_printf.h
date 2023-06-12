@@ -20,11 +20,13 @@ typedef struct tab_ft_printf
 	int	is_zero;
 	int	percent;
 	int	space;
+	int	is_negative;
 } tab;
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 int	ft_intlen(int n);
+int	ft_justify(tab *init, char *str, int n, int len_n);
 int	ft_print_char(tab *init);
 int	ft_print_hexa(tab *init, char format);
 int	ft_print_int(tab *init);

@@ -13,5 +13,6 @@ tab	*ft_init(tab *init)
 	init->is_zero = 0;
 	init->percent = 0;
 	init->space = 0;
+	init->is_negative = 0;
 	return (init);
 }

@@ -36,13 +36,18 @@ int	ft_flags(tab *init, const char *format, int i)
 	int	len;
 
 	len = 0;
+	if (format[i] == '-')
+	{
+		init->dash = 1;
+		i++;
+	}
 	if (format[i] == '.')
 	{
 		init->precision = 1;
 		i++;
 	}
 	else
-		while (ft_strchr("-+ #0", format[i]))
+		while (ft_strchr("+ #0", format[i]))
 		{
 			if (format[i] == '+')
 				init->sign = 1;
@@ -111,7 +116,7 @@ int	main(void)
 	len = ft_printf("ft_printf c : %c\n", c);
 	printf("Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
-	printf("*    ***printf s : %.25s\n", str);
+	printf("*    ***printf s : %-.5s\n", str);
 	len = ft_printf("*    ft_printf s : %.25s\n", str);
 	printf("*    Valeur de len : %d\n", len);
 	printf("*\n**********************************************************************************\n");
@@ -120,8 +125,8 @@ int	main(void)
 	len = ft_printf("ft_printf p : %p\n", &c);
 	printf("Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
-	printf("***printf d : %+17d - ***printf i : %+017i\n", d, d);
-	len = ft_printf("ft_printf d : %+017d - ft_printf i : %+017i\n", d, d);
+	printf("***printf d : %.17d - ***printf i : %.17i\n", d, d);
+	len = ft_printf("ft_printf d : %.17d - ft_printf i : %.17i\n", d, d);
 //	printf("Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
 	printf("\n\n***printf x : %x _ ***printf X : %X\n", x, x);
