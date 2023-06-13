@@ -4,6 +4,7 @@ tab	*ft_init(tab *init)
 {
 	init->index = 0;
 	init->width = 0;
+	init->width_arg = 0;
 	init->precision = 0;
 	init->lenght = 0;
 	init->zero = 0;

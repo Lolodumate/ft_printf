@@ -10,6 +10,8 @@ int	ft_print_str(tab *init)
 	width = 0;
 	if (init->width != 0)
 		width = init->width;
+	else if (init->width_arg != 0)
+		width = va_arg(init->args, int);
 	str = malloc(sizeof(va_arg(init->args, char *)));
 	if (str == NULL)
 		return (-1);
