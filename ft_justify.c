@@ -49,7 +49,7 @@ int	ft_justify(tab *init, char *str, int n, int len_n)
 
 	len = ft_intlen(n);
 	i = 0;
-	if (init->dash == 0)
+	if (init->dash == 0 && init->width > len)
 		ft_justify_right(init, str, n, len_n);
 	else
 	{

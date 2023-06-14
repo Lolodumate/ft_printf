@@ -1,10 +1,17 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft.h"
+# include <limits.h>
 # include <stdarg.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+
+typedef enum
+{
+	false,
+	true
+} booleen;
 
 typedef struct tab_ft_printf
 {
@@ -26,6 +33,7 @@ typedef struct tab_ft_printf
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+int	ft_dash(tab *init, const char *format, int i);
 int	ft_intlen(int n);
 int	ft_justify(tab *init, char *str, int n, int len_n);
 int	ft_precision(tab *init, const char *format, int i);

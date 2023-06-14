@@ -51,6 +51,8 @@ int	ft_print_int(tab *init)
 		len_n++;
 	if ((init->width > ft_intlen(n)) && init->precision == 0 && len_n != 0 && (init->sign != 0 || init->is_negative != 0))
 		len_n--;
+	if (init->space != 0 && init->sign == 0 && init->is_negative == 0)
+		len_n++;
 	if (init->width == 0 && init->precision != 0 && (n == 0 || !n))
 		str = NULL;
 	else
@@ -65,5 +67,6 @@ int	ft_print_int(tab *init)
 		ft_putstr(str);
 		free(str);
 	}
+	init->precision = 0;
 	return (len_n);
 }

@@ -38,26 +38,27 @@ int	ft_flags(tab *init, const char *format, int i)
 	int	len;
 
 	len = 0;
+	// %[flags][width][.precision]specifier
 	if (format[i] == '-')
 	{
-		init->dash = 1;
+		ft_dash(init, format, i);
+	//	init->dash = 1;
+		i++;
+	}
+	while (ft_strchr("+ #0*", format[i]))
+	{
+		if (format[i] == '+')
+			init->sign = 1;
+		if (format[i] == ' ')
+			init->space = 1;
+		if (format[i] == '#')
+			init->pointer = 1;
+		if (format[i] == '0')
+			init->zero = 1;
 		i++;
 	}
 	if (format[i] == '.')
 		i = ft_precision(init, format, i);
-	else
-		while (ft_strchr("+ #0*", format[i]))
-		{
-			if (format[i] == '+')
-				init->sign = 1;
-			if (format[i] == ' ')
-				init->space = 1;
-			if (format[i] == '#')
-				init->pointer = 1;
-			if (format[i] == '0')
-				init->zero = 1;
-			i++;
-		}
 	if (ft_isdigit(format[i]))
 		ft_width(init, format, i);
 	while (ft_isdigit(format[i]))
@@ -104,12 +105,13 @@ int	main(void)
 	int	d;
 	int	x;
 	int	len;
+	int	u_int;
 
 	c = 'L';
-	d = -12345;
+	d = 12345;
 	x = 2147000000;
 	len = 0;
-
+	u_int = -1;
 	printf("***printf c : %c\n", c);
 	len = ft_printf("ft_printf c : %c\n", c);
 	printf("Valeur de len : %d\n\n", len);
@@ -149,20 +151,34 @@ int	main(void)
 	ft_printf("*    ft_printf d +17d : %+17d - ft_printf i +17i : %+17i\n", d, d);
 	printf("\n");
 	printf("----------------------------------------------------------------------------------\n");
+	printf("*    ***printf d .5d : %.5d - ***printf i 17i : %17i\n", d, d);
+	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 17i : %17i\n", d, d);
+	ft_printf("*                              ft_printf i 17i : %17i\n", d);
+	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i 017i : %017i\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 017i : %017i\n", d, d);
+	ft_printf("*                              ft_printf i 017i : %017i\n", d);
+	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
+	printf("*    ***printf d .5d : %.5d - ***printf i .17d : %.17d\n", d, d);
+	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i .17i : %.17i\n", d, d);
+	printf("\n");
+	printf("*    ***printf d .5d : %.5d - ***printf i .17i : %.17i\n", d, d);
+	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i .17i : %.17i\n", d, d);	
 	printf("\n");
 	printf("*    ***printf d 017d : %017d - ***printf i .5i : %.5i\n", d, d);
 	ft_printf("*    ft_printf d 017d : %017d - ft_printf i .5i : %.5i\n", d, d);
 	printf("\n\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i 17i : %17i\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 17i : %17i\n", d, d);
-	printf("\n");
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d 17d : %17d - ***printf i .5i : %.5i\n", d, d);
 	ft_printf("*    ft_printf d 17d : %17d - ft_printf i .5i : %.5i\n", d, d);
 	printf("\n\n");
 	printf("*    ***printf d 5d : %5d - ***printf i 017d : %017d\n", d, d);
 	ft_printf("*    ft_printf d 5d : %.5d - ft_printf i 017i : %017i\n", d, d);
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
+	printf("*    ***printf d 5d : %5d - ***printf i 5d : %5d\n", d, d);
+	ft_printf("*    ft_printf d 5d : %5d - ft_printf i 5d : %5d\n", d, d);
 	printf("\n");
 	printf("*    ***printf d 017d : %017d - ***printf i 017i : %017i\n", d, d);
 	ft_printf("*    ft_printf d 017d : %017d - ft_printf i 017i : %017i\n", d, d);
@@ -177,11 +193,56 @@ int	main(void)
 	printf("\n");
 	printf("*    ***printf d .0d : %.d - ***printf i .0i : %.0i\n", d, d);
 	ft_printf("*    ft_printf d .0d : %.0d - ft_printf i .0i : %.0i\n", d, d);
-//	printf("Valeur de len : %d\n\n", len);
+	printf("\n");
+	printf("*    ***printf space d : % d - ***printf space i : % i\n", d, d);
+	ft_printf("*    ft_printf space d : % d - ft_printf space i : % i\n", d, d);
+	printf("\n");
+	printf("*    ***printf d 5d : %5d - ***printf space 5d : % 5d\n", d, d);
+	ft_printf("*    ft_printf d 5d : %5d - ft_printf space 5d : % 5d\n", d, d);
+	printf("\n");
+	printf("*    ***printf d -5d : %-5d - ***printf i -5i : %-5iEND\n", d, d);
+	ft_printf("*    ft_printf d -5d : %-5d - ft_printf i -5i : %-5iEND\n", d, d);
+	printf("\n");
+	printf("*    ***printf d -17d : %-17d - ***printf i -17i : %-17iEND\n", d, d);
+	ft_printf("*    ft_printf d -17d : %-17d - ft_printf i -17i : %-17iEND\n", d, d);
+	printf("\n");
+	printf("*    ***printf d -5d : %-5d - ***printf i 5i : %5iEND\n", d, d);
+	ft_printf("*    ft_printf d -5d : %-5d - ft_printf i 5i : %5iEND\n", d, d);
+	printf("\n");
+	printf("*    ***printf d 5d : %5d - ***printf i -5i : %-5iEND\n", d, d);
+	ft_printf("*    ft_printf d 5d : %5d - ft_printf i -5i : %-5iEND\n", d, d);
+	printf("\n");
+	printf("*    ***printf d 17d : %17d - ***printf d -17d : %-17dEND\n", d, d);
+	ft_printf("*    ft_printf d 17d : %17d - ft_printf d -17d : %-17dEND\n", d, d);
+	printf("\n");
+	printf("*    ***printf d -.17d : %-.17dEND\n", d);
+	ft_printf("*    ft_printf d -.17d : %-.17dEND\n", d);
+	printf("\n");
+	printf("*    ***printf d -.5d : %-.5dEND\n", d);
+	ft_printf("*    ft_printf d -.5d : %-.5dEND\n", d);
+	printf("\n");
+	printf("*    ***printf d -17d : %-17dEND\n", d);
+	ft_printf("*    ft_printf d -17d : %-17dEND\n", d);
+	printf("\n");
+	printf("*    ***printf d -5d : %-5dEND\n", d);
+	ft_printf("*    ft_printf d -5d : %-5dEND\n", d);
+	printf("\n");
+	printf("*    ***printf d .17d : %.17dEND\n", d);
+	ft_printf("*    ft_printf d .17d : %.17dEND\n\n", d);
+	printf("*    Valeur de len : %d\n\n", len);
 	printf("\n**********************************************************************************\n");
-	printf("\n\n***printf x : %x - ***printf X : %X\n", x, x);
-	len = ft_printf("ft_printf x : %x - ft_printf X : %X\n\n", x, x);
-	printf("Valeur de len : %d\n", len);
-
+	printf("\n*    ***printf x : %x - ***printf X : %X\n", x, x);
+	len = ft_printf("*    ft_printf x : %x - ft_printf X : %X\n\n", x, x);
+	printf("*    Valeur de len : %d\n", len);
+	printf("\n**********************************************************************************\n");
+	printf("*    ***printf u : %u\n", u_int);
+	ft_printf("*    ft_printf u : %u\n", u_int);
+	printf("\n");
+	printf("*    ***printf u - 1 : %u\n", u_int - 1);
+	ft_printf("*    ft_printf u - 1 : %u\n", u_int - 1);
+	printf("*\n**********************************************************************************\n\n");
+	printf("*\n*    ***printf p : %p\n", &c);
+	ft_printf("*    ft_printf p : %p\n", &c);
+	printf("*\n");
 	return (0);
 }
