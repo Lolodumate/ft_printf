@@ -23,7 +23,10 @@ int	ft_print_uint(tab *init)
 	len = ft_intlen(n);
 	res = 0;
 	if (n == 0)
+	{
 		ft_putchar('0');
+		return (1);
+	}
 	else
 	{
 		str = malloc(sizeof(char) * len + 1);
@@ -36,5 +39,11 @@ int	ft_print_uint(tab *init)
 	}
 	ft_fill_ui(res);
 	free(str);
+	len = 0;
+	while (res > 0)
+	{
+		len++;
+		res /= 10;
+	}
 	return (len);
 }

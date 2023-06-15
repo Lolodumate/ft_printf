@@ -15,7 +15,7 @@ static void	ft_puthexa(int x, char format)
 		}	
 		else
 		{
-			if (format == 'x' || format == 'p')
+			if (format == 'x')
 				ft_putchar(x - 10 + 'a');
 			if (format == 'X')
 				ft_putchar(x - 10 + 'A');
@@ -23,13 +23,18 @@ static void	ft_puthexa(int x, char format)
 	}
 }
 
-int	ft_print_hexa(tab *init, char format)
+int	ft_print_hexa(tab *init, const char *format, int i)
 {
 	int	len;
 	unsigned int	x;
 
 	len = 0;
 	x = va_arg(init->args, unsigned int);
-	ft_puthexa(x, format);
+	if (format[i - 1] == '#')
+	{
+		ft_putchar('0');
+		ft_putchar('x');
+	}
+	ft_puthexa(x, format[i]);
 	return (len);
 }

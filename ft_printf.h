@@ -6,6 +6,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 typedef enum
 {
@@ -38,9 +40,10 @@ int	ft_intlen(int n);
 int	ft_justify(tab *init, char *str, int n, int len_n);
 int	ft_precision(tab *init, const char *format, int i);
 int	ft_print_char(tab *init);
-int	ft_print_hexa(tab *init, char format);
+int	ft_print_hexa(tab *init, const char *format, int i);
 int	ft_print_int(tab *init);
 int	ft_print_percent(void);
+int	ft_print_ptr(tab *init);
 int	ft_print_str(tab *init);
 int	ft_print_uint(tab *init);
 int	ft_width(tab *init, const char *format, int i);
