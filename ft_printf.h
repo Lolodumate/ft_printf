@@ -6,7 +6,7 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:46:39 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 15:44:29 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/17 18:52:05 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h> // A supprimer 
 # include <unistd.h>
-
-typedef enum
-{
-	false,
-	true
-} booleen;
+# include <stdio.h>
 
 typedef struct tab_ft_printf
 {
@@ -46,10 +40,14 @@ typedef struct tab_ft_printf
 
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+int	ft_conversion(tab *init, const char *format, int i);
 int	ft_dash(tab *init, const char *format, int i);
+int	ft_flags(tab *init, const char *format, int i);
 int	ft_intlen(int n);
 int	ft_justify(tab *init, char *str, int n, int len_n);
+int	ft_len_ft_printf(const char *format);
 int	ft_precision(tab *init, const char *format, int i);
+int	ft_printf(const char *format, ...);
 int	ft_print_char(tab *init);
 int	ft_print_hexa(tab *init, const char *format, int i);
 int	ft_print_int(tab *init);

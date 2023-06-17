@@ -15,17 +15,17 @@ int	ft_conversion(tab *init, const char *format, int i)
 	{
 		if (format[i] == 'c') // int
 		       len += ft_print_char(init);
-		if (format[i] == 's') // char *
+		else if (format[i] == 's') // char *
 			len += ft_print_str(init);
-		if (format[i] == 'p') // unsigned long
+		else if (format[i] == 'p') // unsigned long
 			len += ft_print_ptr(init);
-		if (format[i] == 'd' || format[i] == 'i') // int
+		else if (format[i] == 'd' || format[i] == 'i') // int
 			len += ft_print_int(init);
-		if (format[i] == 'u') // unsigned int
+		else if (format[i] == 'u') // unsigned int
 			len += ft_print_uint(init);
-		if (format[i] == 'x' || format[i] == 'X') // unsigned int
+		else if (format[i] == 'x' || format[i] == 'X') // unsigned int
 			len += ft_print_hexa(init, format, i);
-		if (format[i] == '%' && format[i - 1] == '%')
+		else if (format[i] == '%' && format[i - 1] == '%')
 			len += ft_print_percent();
 		i++;
 		init->index = i;
@@ -39,30 +39,33 @@ int	ft_flags(tab *init, const char *format, int i)
 
 	len = 0;
 	// %[flags][width][.precision]specifier
-	if (format[i] == '-')
+	if (!ft_strchr("cspdiuxX%", format[i]))
 	{
-		ft_dash(init, format, i);
-		i++;
+		if (format[i] == '-')
+		{
+			ft_dash(init, format, i);
+			i++;
+		}
+		while (ft_strchr("+ #0*", format[i]))
+		{
+			if (format[i] == '+')
+				init->sign = 1;
+			if (format[i] == ' ')
+				init->space = 1;
+			if (format[i] == '#')
+				init->hashtag = 1;
+			if (format[i] == '0')
+				init->zero = 1;
+			i++;
+		}
+		if (format[i] == '.')
+			i = ft_precision(init, format, i);
+		if (ft_isdigit(format[i]))
+			ft_width(init, format, i);
+		while (ft_isdigit(format[i]))
+			i++;
+		init->index = i;
 	}
-	while (ft_strchr("+ #0*", format[i]))
-	{
-		if (format[i] == '+')
-			init->sign = 1;
-		if (format[i] == ' ')
-			init->space = 1;
-		if (format[i] == '#')
-			init->hashtag = 1;
-		if (format[i] == '0')
-			init->zero = 1;
-		i++;
-	}
-	if (format[i] == '.')
-		i = ft_precision(init, format, i);
-	if (ft_isdigit(format[i]))
-		ft_width(init, format, i);
-	while (ft_isdigit(format[i]))
-		i++;
-	init->index = i;
 	len = ft_conversion(init, format, i);
 	return (len);
 }
@@ -70,7 +73,7 @@ int	ft_flags(tab *init, const char *format, int i)
 int	ft_printf(const char *format, ...)
 {
 	int	i;
-	int	len;
+	int	len_args;
 	tab	*init;
 
 	init = malloc(sizeof(tab));
@@ -79,13 +82,13 @@ int	ft_printf(const char *format, ...)
 	ft_init(init);
 	va_start(init->args, format);
 	i = 0;
-	len = 0;
+	len_args = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			i++;
-			len += ft_flags(init, format, i);
+			len_args += ft_flags(init, format, i);
 			i = init->index - 1;
 		}
 		else
@@ -94,12 +97,42 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(init->args);
 	free(init);
-	return (len);
+//	printf("Valeur de ft_len_ft_printf(format) : %d\n", ft_len_ft_printf(format));
+	return (ft_len_ft_printf(format) + len_args);
 }
-
+/*
 int	main(void)
 {
-	char	c;
+
+	printf("Valeur de ***printf c : %d\n", printf("%c", '0'));
+	ft_printf("Valeur de ft_printf c : %d\n", ft_printf("%c", '0'));
+	ft_putchar('\n');
+	printf(" %c ", '0');
+	ft_printf(" %c ", '0');
+	ft_putchar('\n');
+	printf("Valeur de ***printf c : %d\n", printf(" %cEND", '0' - 256));
+	printf("Valeur de ft_printf c : %d\n", ft_printf(" %cEND", '0' - 256));
+	ft_putchar('\n');
+	printf("Valeur de ***printf c : %d\n", printf("%c ", '0' + 256));
+	printf("Valeur de ft_printf c : %d\n", ft_printf("%c ", '0' + 256));
+	ft_putchar('\n');
+	printf(" %c %c %c ", '0', 0, '1');
+	ft_printf(" %c %c %c ", '0', '0', '1');
+	ft_putchar('\n');
+	printf(" %c %c %c ", ' ', ' ', ' ');
+	ft_printf(" %c %c %c ", ' ', ' ', ' ');
+	ft_putchar('\n');
+	printf(" %c %c %c ", '1', '2', '3');
+	ft_printf(" %c %c %c ", '1', '2', '3');
+	ft_putchar('\n');
+	printf(" %c %c %c ", '2', '1', 0);
+	ft_printf(" %c %c %c ", '2', '1', '0');
+	ft_putchar('\n');
+	printf(" %c %c %c ", 0, '1', '2');
+	ft_printf(" %c %c %c ", '0', '1', '2');
+*/
+
+/*	char	c;
 	char	*str = "Coucou ! Comment ça va ??? :o) XXXXXXXXXXXXXXXXXXXX";
 	int	d;
 	int	x;
@@ -301,4 +334,4 @@ int	main(void)
 	printf("*     Valeur de len_ft_printf : %d\n", len_ft_printf);
 	printf("*\n");
 	return (0);
-}
+}*/

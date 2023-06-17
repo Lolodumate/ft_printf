@@ -6,7 +6,7 @@
 #    By: laroges <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 07:20:37 by laroges           #+#    #+#              #
-#    Updated: 2023/05/23 17:10:27 by laroges          ###   ########.fr        #
+#    Updated: 2023/06/17 18:53:00 by laroges          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRC =	ft_atoi.c \
 	ft_isprint.c \
 	ft_itoa.c \
 	ft_strdup.c \
-	ft_strlen.c \
 	ft_memset.c \
 	ft_bzero.c \
 	ft_memcmp.c \
@@ -33,6 +32,7 @@ SRC =	ft_atoi.c \
 	ft_putendl_fd.c \
 	ft_putnbr_fd.c \
 	ft_putstr_fd.c \
+	ft_strlen.c \
 	ft_strlcpy.c \
 	ft_strlcat.c \
 	ft_strnstr.c \
@@ -48,6 +48,23 @@ SRC =	ft_atoi.c \
 	ft_strrchr.c \
 	ft_substr.c \
 	ft_memchr.c \
+	ft_dash.c \
+	ft_init.c \
+	ft_intlen.c \
+	ft_justify.c \
+	ft_len_ft_printf.c \
+	ft_print_char.c \
+	ft_printf.c \
+	ft_print_hexa.c \
+	ft_print_int.c \
+	ft_print_percent.c \
+	ft_precision.c \
+	ft_print_ptr.c \
+	ft_print_str.c \
+	ft_print_uint.c \
+	ft_putchar.c \
+	ft_putstr.c \
+	ft_width.c \
 
 B_SRC =	ft_lstnew.c \
 	ft_lstadd_front.c \
@@ -63,7 +80,7 @@ OBJ =	$(SRC:.c=.o)
 
 BONUS_OBJ =	$(B_SRC:.c=.o)
 
-NAME =	libft.a
+NAME =	libftprintf.a
 
 all: $(NAME)
 
