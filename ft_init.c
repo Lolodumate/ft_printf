@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/17 13:22:13 by laroges           #+#    #+#             */
+/*   Updated: 2023/06/17 13:24:56 by laroges          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 tab	*ft_init(tab *init)
@@ -10,6 +22,7 @@ tab	*ft_init(tab *init)
 	init->zero = 0;
 	init->pointer = 0;
 	init->dash = 0;
+	init->hashtag = 0;
 	init->sign = 0;
 	init->is_zero = 0;
 	init->percent = 0;

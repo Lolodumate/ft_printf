@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_width.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/17 14:58:06 by laroges           #+#    #+#             */
+/*   Updated: 2023/06/17 16:16:37 by laroges          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_width(tab *init, const char *format, int i)
 {
-	int	len;
+	int		len;
 	char	*str;
 
 	len = 0;
@@ -20,8 +32,6 @@ int	ft_width(tab *init, const char *format, int i)
 		len--;
 		i--;
 	}
-	while (str[len])
-		len++;
 	init->width = ft_atoi(str);
 	free(str);
 	return (init->width);

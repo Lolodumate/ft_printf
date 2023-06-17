@@ -1,13 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/17 13:46:39 by laroges           #+#    #+#             */
+/*   Updated: 2023/06/17 15:44:29 by laroges          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft.h"
 # include <limits.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
+# include <stdio.h> // A supprimer 
 # include <unistd.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 
 typedef enum
 {
@@ -26,6 +36,7 @@ typedef struct tab_ft_printf
 	int	zero;
 	int	pointer;
 	int	dash;
+	int	hashtag;
 	int	sign;
 	int	is_zero;
 	int	percent;

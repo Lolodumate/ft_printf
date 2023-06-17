@@ -51,7 +51,7 @@ int	ft_flags(tab *init, const char *format, int i)
 		if (format[i] == ' ')
 			init->space = 1;
 		if (format[i] == '#')
-			init->pointer = 1;
+			init->hashtag = 1;
 		if (format[i] == '0')
 			init->zero = 1;
 		i++;
@@ -116,7 +116,7 @@ int	main(void)
 	len_printf = 0;
 //	total_len_ft_printf = 0;
 //	total_len_printf = 0;
-	u_int = -1;
+	u_int = -10;
 	printf("\n*********************************************************************************\n");
 	printf("*    ***printf c : %c\n", c);
 	ft_printf("*    ft_printf c : %c\n", c);
@@ -175,15 +175,12 @@ int	main(void)
 	printf("*    ***printf d +17d : %+17d - ***printf i +17i : %+17i\n", d, d);
 	ft_printf("*    ft_printf d +17d : %+17d - ft_printf i +17i : %+17i\n", d, d);
 	printf("\n");
-	printf("----------------------------------------------------------------------------------\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i 17i : %17i\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 17i : %17i\n", d, d);
 	ft_printf("*                              ft_printf i 17i : %17i\n", d);
-	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i 017i : %017i\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 017i : %017i\n", d, d);
 	ft_printf("*                              ft_printf i 017i : %017i\n", d);
-	printf("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i .17d : %.17d\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i .17i : %.17i\n", d, d);
 	printf("\n");
@@ -195,13 +192,11 @@ int	main(void)
 	printf("\n\n");
 	printf("*    ***printf d .5d : %.5d - ***printf i 17i : %17i\n", d, d);
 	ft_printf("*    ft_printf d .5d : %.5d - ft_printf i 17i : %17i\n", d, d);
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d 17d : %17d - ***printf i .5i : %.5i\n", d, d);
 	ft_printf("*    ft_printf d 17d : %17d - ft_printf i .5i : %.5i\n", d, d);
 	printf("\n\n");
 	printf("*    ***printf d 5d : %5d - ***printf i 017d : %017d\n", d, d);
 	ft_printf("*    ft_printf d 5d : %.5d - ft_printf i 017i : %017i\n", d, d);
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n");
 	printf("*    ***printf d 5d : %5d - ***printf i 5d : %5d\n", d, d);
 	ft_printf("*    ft_printf d 5d : %5d - ft_printf i 5d : %5d\n", d, d);
 	printf("\n");
@@ -210,8 +205,6 @@ int	main(void)
 	printf("\n");
 	printf("*    ***printf d 05d : %05d - ***printf i 05i : %05i\n", d, d);
 	ft_printf("*    ft_printf d 05d : %05d - ft_printf i 05i : %05i\n", d, d);
-	printf("\n");
-	printf("----------------------------------------------------------------------------------\n");
 	printf("\n");
 	printf("*    ***printf d +5d : %+5d - ***printf i +5i : %+5i\n", d, d);
 	ft_printf("*    ft_printf d +5d : %+5d - ft_printf i +5i : %+5i\n", d, d);
@@ -265,20 +258,38 @@ int	main(void)
 	ft_printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
 	printf("\n**********************************************************************************\n");
 	printf("\n*    ***printf #x : %#x - ***printf #X : %#X\n", x, x);
-	len_ft_printf = ft_printf("*    ft_printf #x : %#x - ft_printf #X : %#X\n\n", x, x);
-	printf("*    Valeur de len_ft_printf : %d\n", len_ft_printf);
+	ft_printf("*    ft_printf #x : %#x - ft_printf #X : %#X\n*\n", x, x);
+	ft_putchar('>');
+	len_printf = printf("%#x", x);
+	len_ft_printf = ft_printf("%#x", x);
+	printf("\n");
+	printf("*    Valeur de ***len_printf x : %d\n", len_printf);
+	printf("*    Valeur de len_ft_printf x : %d\n", len_ft_printf);
+	printf("\n");
+	ft_putchar('>');
+	len_printf = printf("%#X", x);
+	len_ft_printf = ft_printf("%#X", x);
+	printf("\n");
+	printf("*    Valeur de ***len_printf X : %d\n", len_printf);
+	printf("*    Valeur de len_ft_printf X : %d\n", len_ft_printf);
 	printf("\n**********************************************************************************\n");
 	printf("*    ***printf u : %u\n", u_int);
 	ft_printf("*    ft_printf u : %u\n", u_int);
 	printf("\n");
 	printf("*    ***printf u - 1 : %u\n", u_int - 1);
 	ft_printf("*    ft_printf u - 1 : %u\n", u_int - 1);
-	ft_putchar('>');
-	len_printf = printf("%u", u_int);
-	len_ft_printf = ft_printf("%u", u_int);
-	printf("\n");
-	printf("*    Valeur de ***len_printf : %d\n", len_printf);
-	ft_printf("*    Valeur de len_ft_printf : %d\n", len_ft_printf);
+	while (u_int < 10)
+	{
+		printf("\n-------------------------------------------------------\n");
+		ft_putchar('>');
+		len_printf = printf("%u", u_int);
+		len_ft_printf = ft_printf("%u", u_int);
+		printf("\n");
+		printf("*    Valeur de ***len_printf : %d\n", len_printf);
+		ft_printf("*    Valeur de len_ft_printf : %d\n", len_ft_printf);
+		printf("\n-------------------------------------------------------");
+		u_int++;
+	}
 	printf("*\n**********************************************************************************\n\n");
 	printf("*\n*    ***printf p : %p\n", &c);
 	ft_printf("*    ft_printf p : %p\n\n", &c);

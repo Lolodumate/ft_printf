@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_uint.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/17 14:39:35 by laroges           #+#    #+#             */
+/*   Updated: 2023/06/17 14:44:18 by laroges          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static void	ft_fill_ui(unsigned int res)
@@ -18,7 +30,6 @@ int	ft_print_uint(tab *init)
 	int	len;
 	unsigned int	res;
 
-
 	n = va_arg(init->args, unsigned int);
 	len = ft_intlen(n);
 	res = 0;
@@ -33,7 +44,7 @@ int	ft_print_uint(tab *init)
 		if (str == NULL)
 			return (-1);
 		if (n > 0)
-			res = n;	
+			res = n;
 		else
 			res = UINT_MAX + n + 1;
 	}
