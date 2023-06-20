@@ -30,7 +30,7 @@ static int	ft_hexalen(unsigned int x)
 	return (len);
 }
 
-static void	ft_puthexa(int x, char format)
+static void	ft_puthexa(unsigned int x, char format)
 {
 	if (x >= 16)
 	{
@@ -51,20 +51,18 @@ static void	ft_puthexa(int x, char format)
 	}
 }
 
-int	ft_print_hexa(tab *init, const char *format, int i)
+int	ft_print_hexa(tab *init, const char *format, int i, unsigned int args)
 {
 	int				len;
-	unsigned int	x;
 
 	len = 0;
-	x = va_arg(init->args, unsigned int);
 	if (init->hashtag != 0)
 	{
 		ft_putchar('0');
 		ft_putchar('x');
 		len = 2;
 	}
-	ft_puthexa(x, format[i]);
-	len += ft_hexalen(x);
+	ft_puthexa(args, format[i]);
+	len += ft_hexalen(args);
 	return (len);
 }

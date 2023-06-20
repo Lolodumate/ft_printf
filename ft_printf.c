@@ -24,7 +24,7 @@ int	ft_conversion(tab *init, const char *format, int i)
 		else if (format[i] == 'u') // unsigned int
 			len += ft_print_uint(init);
 		else if (format[i] == 'x' || format[i] == 'X') // unsigned int
-			len += ft_print_hexa(init, format, i);
+			len += ft_print_hexa(init, format, i, va_arg(init->args, unsigned int));
 		else if (format[i] == '%' && format[i - 1] == '%')
 			len += ft_print_percent();
 		i++;

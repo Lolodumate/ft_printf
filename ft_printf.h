@@ -49,7 +49,7 @@ int	ft_len_ft_printf(const char *format);
 int	ft_precision(tab *init, const char *format, int i);
 int	ft_printf(const char *format, ...);
 int	ft_print_char(tab *init);
-int	ft_print_hexa(tab *init, const char *format, int i);
+int	ft_print_hexa(tab *init, const char *format, int i, unsigned int args);
 int	ft_print_int(tab *init, int args);
 int	ft_print_percent(void);
 int	ft_print_ptr(tab *init);
