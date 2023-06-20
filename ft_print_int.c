@@ -76,6 +76,7 @@ int	ft_print_int(tab *init, int args)
 		ft_putstr(str);
 		free(str);
 	}
+	init->is_negative = 0;
 	init->precision = 0;
 	return (len_n);
 }

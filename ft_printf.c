@@ -18,7 +18,7 @@ int	ft_conversion(tab *init, const char *format, int i)
 		else if (format[i] == 's') // char *
 			len += ft_print_str(init, va_arg(init->args, char *));
 		else if (format[i] == 'p') // unsigned long
-			len += ft_print_ptr(init);
+			len += ft_print_ptr(init, va_arg(init->args, unsigned long long));
 		else if (format[i] == 'd' || format[i] == 'i') // int
 			len += ft_print_int(init, va_arg(init->args, int));
 		else if (format[i] == 'u') // unsigned int
@@ -100,7 +100,7 @@ int	ft_printf(const char *format, ...)
 //	printf("Valeur de ft_len_ft_printf(format) : %d\n", ft_len_ft_printf(format));
 	return (ft_len_ft_printf(format) + len_args);
 }
-
+/*
 int	main(void)
 {
 
@@ -131,7 +131,7 @@ int	main(void)
 	ft_putchar('\n');
 	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", '0', '1', '2'));
 	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", '0', '1', '2'));
-
+*/
 /*	printf("*************************TESTS CONVERSION POINTEURSC***********************");
         printf("\nValeur de ***printf p : %d\n",    printf(" %p ", -1));
         printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p ", -1));
@@ -161,7 +161,7 @@ int	main(void)
 	printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", 0, 0));
 */
 
-
+/*
 	char	c;
 	char	*str = "Coucou ! Comment ça va ??? :o) XXXXXXXXXXXXXXXXXXXX";
 	int	d;
@@ -381,7 +381,7 @@ int	main(void)
         printf("*    Valeur de ***len_printf : %d\n", len_printf);
         printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
         printf("**********************************************************************************\n");
-/*        printf("\n**********************************************************************************\n");
+	printf("\n**********************************************************************************\n");
 //	printf("*    ***printf s : %s\n", NULL);
         ft_printf("*    ft_printf s : %s\n", NULL);
         ft_putchar('>');
@@ -390,7 +390,7 @@ int	main(void)
         printf("\n");
 //	printf("*    Valeur de ***len_printf : %d\n", len_printf);
         printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
-*/	printf("**********************************************************************************\n");
+	printf("**********************************************************************************\n");
 	printf("*    ***printf s :  %d %d %ld %ld %ld %d %d\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 	ft_printf("*    ft_printf s :  %d %d %d %d %d %d %d\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
 	ft_putchar('>');
@@ -401,5 +401,31 @@ int	main(void)
 	printf("\n");
 	printf("*    Valeur de ***len_printf : %d\n", len_printf);
 	printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
+        printf("**********************************************************************************\n");
+	printf("%i%i%i%i%i%i%i", 10, 23, -2, 37, 200, -9999, 977779);
+	printf("\n");
+	ft_printf("%i%i%i%i%i%i%i", 10, 23, -2, 37, 200, -9999, 977779);
+	printf("\n");
+	ft_putchar('>');
+	len_printf = printf("%i%i%i%i%i%i%i", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+	ft_putchar('>');
+        len_ft_printf = ft_printf("%i%i%i%i%i%i%i", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+        printf("*    Valeur de ***len_printf : %d\n", len_printf);
+        printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
+        printf("**********************************************************************************\n");
+        printf("%d%d%d%d%d%d%d", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+        ft_printf("%d%d%d%d%d%d%d", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+        ft_putchar('>');
+        len_printf = printf("%d%d%d%d%d%d%d", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+        ft_putchar('>');
+        len_ft_printf = ft_printf("%d%d%d%d%d%d%d", 10, 23, -2, 37, 200, -9999, 977779);
+        printf("\n");
+        printf("*    Valeur de ***len_printf : %d\n", len_printf);
+        printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
 	return (0);
-}
+}*/

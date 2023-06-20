@@ -52,7 +52,7 @@ int	ft_print_char(tab *init);
 int	ft_print_hexa(tab *init, const char *format, int i, unsigned int args);
 int	ft_print_int(tab *init, int args);
 int	ft_print_percent(void);
-int	ft_print_ptr(tab *init);
+int	ft_print_ptr(tab *init, unsigned long long ptr);
 int	ft_print_str(tab *init, char *str);
 int	ft_print_uint(tab *init);
 int	ft_width(tab *init, const char *format, int i);

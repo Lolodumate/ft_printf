@@ -44,19 +44,33 @@ static void	ft_putptr(unsigned long ptr)
 	}
 }
 
-int	ft_print_ptr(tab *init)
+int	ft_print_ptr(tab *init, unsigned long long ptr)
 {
 	int	len;
-	unsigned long	ptr;
 
-	ptr = va_arg(init->args, unsigned long);
-	if (ptr != 0)
+	len = 0;
+	if (ptr == 0)
 	{
+		ft_putstr("(nil)");
+		return (5);
+	}
+	else if (ptr != 0)
+	{
+		init->pointer = 1;
 		ft_putchar('0');
 		ft_putchar('x');
-		ft_putptr(ptr);
 		len = 2;
 	}
-	len += ft_ptrlen(ptr);
+	if (ptr == 0)
+	{
+		ft_putchar('0');
+		len++;
+	}
+	else
+	{
+		ft_putptr(ptr);
+		len += ft_ptrlen(ptr);
+	}
+	init->pointer = 0;
 	return (len);
 }
