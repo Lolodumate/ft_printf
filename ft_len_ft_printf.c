@@ -16,30 +16,34 @@ int	ft_len_ft_printf(const char *format)
 {
 	int	tmp;
 	int	i;
+	int	j;
 
 	tmp = 0;
 	i = 0;
-//	printf("Valeur de ft_strlen(format) dans ft_len_ft_printf : %ld\n", ft_strlen(format));
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			tmp++;
-			while (format[i + tmp])
+			j = 1;
+			while (format[i + j])
 			{
-				if (ft_strchr("-+ #0123456789.*", format[i + tmp]))
-					tmp++;
-				if (ft_strchr("cspdiuxX%", format[i + tmp]))
+				if (ft_strchr("-+ #0123456789.*", format[i + j]))
 				{
 					tmp++;
+					j++;
+				}
+				if (ft_strchr("cspdiuxX%", format[i + j]))
+				{
+					tmp++;
+					j++;
 					break ;
 				}
 			}
-			i += tmp;
+			i += j;
 		}
 		else
 			i++;
 	}
-//	printf("Valeur de tmp dans ft_len_ft_printf : %d\n", tmp);
 	return (ft_strlen(format) - tmp);
 }

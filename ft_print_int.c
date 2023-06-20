@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-static void	ft_padding(tab *init, char *str)
+static void	ft_padding(tab *init, char *str, int args)
 {
 	int	i;
 	char	c;
 
 	i = 0;
-	if (init->zero != 0 || init->precision != 0)
+	if (init->zero != 0 || init->precision != 0 || args == 0)
 		c = '0';
 	else
 		c = ' ';
@@ -29,53 +29,50 @@ static void	ft_padding(tab *init, char *str)
 	}
 }
 
-static void	ft_fillstr(tab *init, char *str, int n, int len_n)
+static void	ft_fillstr(tab *init, char *str, int args, int len_n)
 {
-	int	 nb;
+	long long	nb;
 
-	nb = n;
-	if (nb < 0)
+	nb = args;
+	if (args == INT_MIN)
+		nb = 2147483648;
+	else if (nb < 0)
 		nb *= -1;
-	if (init->dash == 0)
-		ft_padding(init, str);
-	if (n >= 0 && init->sign != 0 && (init->zero != 0 && init->precision != 0))
+	if (init->dash == 0 || args == 0)
+		ft_padding(init, str, args);
+	if (args >= 0 && init->sign != 0 && (init->zero != 0 && init->precision != 0))
 		str[0] = '+';
-	else if (n < 0 && (init->zero != 0 || init->precision != 0))
+	else if (args < 0 && (init->zero != 0 || init->precision != 0))
 		str[0] = '-';
 	ft_justify(init, str, nb, len_n);
 }
 
-int	ft_print_int(tab *init)
+int	ft_print_int(tab *init, int args)
 {
 	int	i;
-	int	n;
 	int	len_n;
 	char	*str;
 
 	i = 0;
-	n = va_arg(init->args, int);
-	len_n = ft_intlen(n);
-	if (n < 0)
+	len_n = ft_intlen(args);
+	if (args < 0)
 		init->is_negative = 1;
 	if (init->width > len_n)
 	       len_n = init->width;
 	if ((init->sign != 0 || init->is_negative != 0) && len_n != 0)
 		len_n++;
-	if ((init->width > ft_intlen(n)) && init->precision == 0 && len_n != 0 && (init->sign != 0 || init->is_negative != 0))
+	if ((init->width > ft_intlen(args)) && init->precision == 0 && len_n != 0 && (init->sign != 0 || init-> is_negative != 0))
 		len_n--;
 	if (init->space != 0 && init->sign == 0 && init->is_negative == 0)
 		len_n++;
-	if (init->width == 0 && init->precision != 0 && (n == 0 || !n))
+	if (init->width == 0 && init->precision != 0 && (args == 0 || !args))
 		str = NULL;
 	else
 	{
-		str = malloc(sizeof(char) * len_n);
-		if (str == NULL)
-			return (-1);
-		str = ft_itoa(n);
+		str = ft_itoa(args);
 		while (++i < len_n)
 			str[i] = ' ';
-		ft_fillstr(init, str, n, len_n);
+		ft_fillstr(init, str, args, len_n);
 		ft_putstr(str);
 		free(str);
 	}

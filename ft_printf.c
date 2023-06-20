@@ -16,11 +16,11 @@ int	ft_conversion(tab *init, const char *format, int i)
 		if (format[i] == 'c') // int
 		       len += ft_print_char(init);
 		else if (format[i] == 's') // char *
-			len += ft_print_str(init);
+			len += ft_print_str(init, va_arg(init->args, char *));
 		else if (format[i] == 'p') // unsigned long
 			len += ft_print_ptr(init);
 		else if (format[i] == 'd' || format[i] == 'i') // int
-			len += ft_print_int(init);
+			len += ft_print_int(init, va_arg(init->args, int));
 		else if (format[i] == 'u') // unsigned int
 			len += ft_print_uint(init);
 		else if (format[i] == 'x' || format[i] == 'X') // unsigned int
@@ -104,35 +104,65 @@ int	ft_printf(const char *format, ...)
 int	main(void)
 {
 
-	printf("Valeur de ***printf c : %d\n", printf("%c", '0'));
-	ft_printf("Valeur de ft_printf c : %d\n", ft_printf("%c", '0'));
+	printf("*************************TESTS CONVERSION C***********************");
+	printf("\nValeur de ***printf c : %d\n", printf("%c", '0'));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf("%c", '0'));
 	ft_putchar('\n');
 	printf(" %c ", '0');
 	ft_printf(" %c ", '0');
 	ft_putchar('\n');
-	printf("Valeur de ***printf c : %d\n", printf(" %cEND", '0' - 256));
-	printf("Valeur de ft_printf c : %d\n", ft_printf(" %cEND", '0' - 256));
+	printf("\nValeur de ***printf c : %d\n",    printf(" %cEND\n", '0' - 256));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %cEND\n", '0' - 256));
 	ft_putchar('\n');
-	printf("Valeur de ***printf c : %d\n", printf("%c ", '0' + 256));
-	printf("Valeur de ft_printf c : %d\n", ft_printf("%c ", '0' + 256));
+	printf("\nValeur de ***printf c : %d\n", printf("%c ", '0' + 256));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf("%c ", '0' + 256));
 	ft_putchar('\n');
-	printf(" %c %c %c ", '0', 0, '1');
-	ft_printf(" %c %c %c ", '0', '0', '1');
+	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", '0', '0', '1'));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", '0', '0', '1'));
 	ft_putchar('\n');
-	printf(" %c %c %c ", ' ', ' ', ' ');
-	ft_printf(" %c %c %c ", ' ', ' ', ' ');
+	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", ' ', ' ', ' '));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", ' ', ' ', ' '));
 	ft_putchar('\n');
-	printf(" %c %c %c ", '1', '2', '3');
-	ft_printf(" %c %c %c ", '1', '2', '3');
+	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", '1', '2', '3'));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", '1', '2', '3'));
 	ft_putchar('\n');
-	printf(" %c %c %c ", '2', '1', 0);
-	ft_printf(" %c %c %c ", '2', '1', '0');
+	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", '2', '1', '0'));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", '2', '1', '0'));
 	ft_putchar('\n');
-	printf(" %c %c %c ", 0, '1', '2');
-	ft_printf(" %c %c %c ", '0', '1', '2');
+	printf("\nValeur de ***printf c : %d\n",    printf(" %c %c %c ", '0', '1', '2'));
+	printf("\nValeur de ft_printf c : %d\n", ft_printf(" %c %c %c ", '0', '1', '2'));
 */
+/*	printf("*************************TESTS CONVERSION POINTEURSC***********************");
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p ", -1));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p ", -1));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p ", 1));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p ", 1));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p ", 15));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p ", 15));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", 16));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", 16));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", 17));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", 17));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", LONG_MIN, LONG_MAX));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", LONG_MIN, LONG_MAX));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", INT_MIN, INT_MAX));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", INT_MIN, INT_MAX));
+        ft_putchar('\n');
+        printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", ULONG_MAX, -ULONG_MAX));
+        printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", ULONG_MAX, -ULONG_MAX));
+	ft_putchar('\n');
+	printf("\nValeur de ***printf p : %d\n",    printf(" %p %p ", 0, 0));
+	printf("\nValeur de ft_printf p : %d\n", ft_printf(" %p %p ", 0, 0));
 
-/*	char	c;
+*/
+/*
+	char	c;
 	char	*str = "Coucou ! Comment ça va ??? :o) XXXXXXXXXXXXXXXXXXXX";
 	int	d;
 	int	x;
@@ -333,5 +363,13 @@ int	main(void)
 	printf("*     Valeur de ***len_printf : %d\n", len_printf);
 	printf("*     Valeur de len_ft_printf : %d\n", len_ft_printf);
 	printf("*\n");
+        printf("*    ***printf d : %d - ***printf i : %i\n", 0, 0);
+        ft_printf("*    ft_printf d : %d - ft_printf i : %i\n", 0, 0);
+        ft_putchar('>');
+        len_printf = printf("%d%i", INT_MIN, INT_MIN);
+        len_ft_printf = ft_printf("%d%i", INT_MIN, INT_MIN);
+        printf("\n");
+        printf("*    Valeur de ***len_printf : %d\n", len_printf);
+        ft_printf("*    Valeur de len_ft_printf : %d\n*\n", len_ft_printf);
 	return (0);
 }*/

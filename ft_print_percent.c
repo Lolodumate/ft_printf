@@ -15,5 +15,5 @@
 int	ft_print_percent(void)
 {
 	ft_putchar('%');
-	return (27);
+	return (1);
 }

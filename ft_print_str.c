@@ -12,29 +12,32 @@
 
 #include "ft_printf.h"
 
-int	ft_print_str(tab *init)
+int	ft_print_str(tab *init, char *str)
 {
-	char	*str;
 	int	i;
 	int	width;
 
 	width = 0;
-	str = malloc(sizeof(va_arg(init->args, char *)));
-	if (str == NULL)
-		return (-1);
-	str = va_arg(init->args, char *);
-	if (init->width != 0)
-		width = init->width;
-	else if (init->width_arg != 0)
-		width = va_arg(init->args, int);
-	else
-		width = ft_strlen(str);
 	i = 0;
-	while (str[i] && width > 0)
+	if (!str)
 	{
-		ft_putchar(str[i]);
-		i++;
-		width--;
+		ft_putstr("(null)");
+		return (6);
+	}
+	else
+	{
+		if (init->width != 0)
+			width = init->width;
+		else if (init->width_arg != 0)
+			width = va_arg(init->args, int);
+		else
+			width = ft_strlen(str);
+		while (str[i] && width > 0)
+		{
+			ft_putchar(str[i]);
+			i++;
+			width--;
+		}
 	}
 	return (i);
 }

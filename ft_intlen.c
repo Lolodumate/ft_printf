@@ -17,12 +17,19 @@ int	ft_intlen(int n)
 	int	len;
 
 	len = 0;
-	if (n < 0)
-		n *= -1;
-	while (n > 0)
-	{
-		n /= 10;
-		len++;
+	if (n == INT_MIN)
+		len = 10;
+	else
+	{	
+		if (n < 0)
+			n *= -1;
+		if (n == 0)
+			len = 1;
+		while (n > 0)
+		{
+			n /= 10;
+			len++;
+		}
 	}
 	return (len);
 }
