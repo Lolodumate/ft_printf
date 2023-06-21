@@ -6,13 +6,13 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:58:06 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 16:16:37 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:40:31 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_width(tab *init, const char *format, int i)
+int	ft_width(t_tab *init, const char *format, int i)
 {
 	int		len;
 	char	*str;

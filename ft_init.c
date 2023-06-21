@@ -6,13 +6,13 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:22:13 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 13:24:56 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:42:12 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-tab	*ft_init(tab *init)
+t_tab	*ft_init(t_tab *init)
 {
 	init->index = 0;
 	init->width = 0;

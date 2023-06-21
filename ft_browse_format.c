@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_browse_format.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/17 14:30:54 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/21 16:49:24 by laroges          ###   ########.fr       */
+/*   Created: 2023/06/21 15:28:29 by laroges           #+#    #+#             */
+/*   Updated: 2023/06/21 16:34:13 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_str(t_tab *init, char *str)
+int	ft_browse_format(t_tab *init, const char *format, int i)
 {
-	int	i;
-	int	width;
+	int	len_args;
 
-	width = 0;
-	i = 0;
-	if (!str)
+	len_args = 0;
+	while (format[i])
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		if (format[i] == '%')
+		{
+			i++;
+			len_args += ft_flags(init, format, i);
+			i = init->index - 1;
+		}
+		else
+			ft_putchar(format[i]);
+		i++;
 	}
-	return (ft_sub_print_str(init, str, width, i));
+	return (len_args);
 }

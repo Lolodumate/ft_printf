@@ -6,7 +6,7 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 18:33:42 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 19:51:37 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:53:04 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,15 @@ int	ft_len_ft_printf(const char *format)
 
 	tmp = 0;
 	i = 0;
+	j = 0;
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			tmp++;
-			j = 1;
-			while (format[i + j])
-			{
-				if (ft_strchr("-+ #0123456789.*", format[i + j]))
-				{
-					tmp++;
-					j++;
-				}
-				if (ft_strchr("cspdiuxX%", format[i + j]))
-				{
-					tmp++;
-					j++;
-					break ;
-				}
-			}
+			i++;
+			j = ft_sub_len_ft_printf(format, i);
+			tmp += j;
 			i += j;
 		}
 		else

@@ -6,15 +6,15 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 14:12:10 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 14:28:29 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 17:11:49 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_padding(tab *init, char *str, int args)
+static void	ft_padding(t_tab *init, char *str, int args)
 {
-	int	i;
+	int		i;
 	char	c;
 
 	i = 0;
@@ -29,7 +29,7 @@ static void	ft_padding(tab *init, char *str, int args)
 	}
 }
 
-static void	ft_fillstr(tab *init, char *str, int args, int len_n)
+static void	ft_fillstr(t_tab *init, char *str, int args, int len_n)
 {
 	long long	nb;
 
@@ -40,31 +40,25 @@ static void	ft_fillstr(tab *init, char *str, int args, int len_n)
 		nb *= -1;
 	if (init->dash == 0 || args == 0)
 		ft_padding(init, str, args);
-	if (args >= 0 && init->sign != 0 && (init->zero != 0 && init->precision != 0))
-		str[0] = '+';
+	if (args >= 0 && init->sign != 0
+		&& (init->zero != 0 && init->precision != 0))
+			str[0] = '+';
 	else if (args < 0 && (init->zero != 0 || init->precision != 0))
 		str[0] = '-';
 	ft_justify(init, str, nb, len_n);
 }
 
-int	ft_print_int(tab *init, int args)
+int	ft_print_int(t_tab *init, int args)
 {
-	int	i;
-	int	len_n;
+	int		i;
+	int		len_n;
 	char	*str;
 
 	i = 0;
 	len_n = ft_intlen(args);
 	if (args < 0)
 		init->is_negative = 1;
-	if (init->width > len_n)
-	       len_n = init->width;
-	if ((init->sign != 0 || init->is_negative != 0) && len_n != 0)
-		len_n++;
-	if ((init->width > ft_intlen(args)) && init->precision == 0 && len_n != 0 && (init->sign != 0 || init-> is_negative != 0))
-		len_n--;
-	if (init->space != 0 && init->sign == 0 && init->is_negative == 0)
-		len_n++;
+	len_n = ft_sub_print_int(init, args, len_n);
 	if (init->width == 0 && init->precision != 0 && (args == 0 || !args))
 		str = NULL;
 	else

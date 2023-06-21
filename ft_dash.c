@@ -6,13 +6,13 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 16:43:24 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 16:13:23 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:35:35 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_dash(tab *init, const char *format, int i)
+int	ft_dash(t_tab *init, const char *format, int i)
 {
 	if (format[i] == '-')
 	{

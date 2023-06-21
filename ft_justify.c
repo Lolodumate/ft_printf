@@ -6,13 +6,13 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:28:27 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 13:41:52 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:36:23 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_add_sign(tab *init, char *str, int len_n)
+static void	ft_add_sign(t_tab *init, char *str, int len_n)
 {
 	if (init->precision == 0)
 	{
@@ -25,7 +25,7 @@ static void	ft_add_sign(tab *init, char *str, int len_n)
 	}
 }
 
-static void	ft_justify_right(tab *init, char *str, long long n, int len)
+static void	ft_justify_right(t_tab *init, char *str, long long n, int len)
 {
 	if (init->width > len)
 		len++;
@@ -42,22 +42,24 @@ static void	ft_justify_right(tab *init, char *str, long long n, int len)
 	ft_add_sign(init, str, len);
 }
 
-static void	ft_justify_left(tab *init, char *str, long long n, int len)
+static void	ft_justify_left(t_tab *init, char *str, long long n, int len)
 {
 	if (init->is_negative != 0 || init->sign != 0 || init->space != 0)
 		len++;
 	if (n == 0)
 		len -= (init->sign + 1);
 	else
+	{
 		while (len-- > 0 && n > 0)
 		{
 			str[len] = (n % 10) + '0';
 			n /= 10;
 		}
+	}
 	ft_add_sign(init, str, len);
 }
 
-int	ft_justify(tab *init, char *str, long long n, int len_n)
+int	ft_justify(t_tab *init, char *str, long long n, int len_n)
 {
 	int	len;
 	int	i;

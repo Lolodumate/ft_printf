@@ -6,13 +6,13 @@
 /*   By: laroges <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/17 13:43:21 by laroges           #+#    #+#             */
-/*   Updated: 2023/06/17 13:45:02 by laroges          ###   ########.fr       */
+/*   Updated: 2023/06/21 16:37:37 by laroges          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_char(tab *init)
+int	ft_print_char(t_tab *init)
 {
 	char	c;
 

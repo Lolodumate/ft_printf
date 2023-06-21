@@ -6,7 +6,7 @@
 #    By: laroges <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 07:20:37 by laroges           #+#    #+#              #
-#    Updated: 2023/06/17 18:53:00 by laroges          ###   ########.fr        #
+#    Updated: 2023/06/21 17:38:16 by laroges          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRC =	ft_atoi.c \
 	ft_strrchr.c \
 	ft_substr.c \
 	ft_memchr.c \
+	ft_browse_format.c \
 	ft_dash.c \
 	ft_init.c \
 	ft_intlen.c \
@@ -55,7 +56,7 @@ SRC =	ft_atoi.c \
 	ft_len_ft_printf.c \
 	ft_print_char.c \
 	ft_printf.c \
-	ft_print_hexa.c \
+	ft_printx.c \
 	ft_print_int.c \
 	ft_print_percent.c \
 	ft_precision.c \
@@ -64,6 +65,10 @@ SRC =	ft_atoi.c \
 	ft_print_uint.c \
 	ft_putchar.c \
 	ft_putstr.c \
+	ft_search_flags.c \
+	ft_sub_len_ft_printf.c \
+	ft_sub_print_int.c \
+	ft_sub_print_str.c \
 	ft_width.c \
 
 B_SRC =	ft_lstnew.c \
